@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col s0 m2 l4"></div>
+  <div class="col s12 m8 l4">
+    <div class="card">
+      <div class="card-image">
+        <img src="/assets/img/cv-app/cv-preview.png" alt="Solidjobs - Descarga tu CV">
+        <span class="card-title">¿Tu CV está terminado?</span>
+      </div>
+      <div class="card-content">
+        <p>
+          Si has rellenado todos tus datos, simplemente pulsa en el siguiente botón y obtendrás tu CV en PDF.
+        </p>
+        <p style="margin-top: 10px;">
+          <strong>¡Envía este archivo a las ofertas de trabajo que te interesen!</strong>
+        </p>
+      </div>
+      <div class="card-action right-align">
+
+        <div *ngIf="loaded && this.errorPDF != null">
+          <p>Ops! Ha habido un error. ¿Tu CV es muy largo? </p>
+          <p>Un CV breve te dará más oportunidades.</p>
+          <p>Si es así, edítalo en <strong routerLink="/cv/contenido">Contenido</strong> y vuelve a intentar descargarlo.</p>
+          <a href="/cv/contenido" routerLink="/cv/contenido">Ir a editar contenido</a>
+        </div>
+
+        <button *ngIf="loaded && this.errorPDF == null" class="btn btn-export" type="submit" name="action"><a class="white-text" id="download-link" download="CV.pdf" [href]="sanitize(pdfFile)">Descargar tu CV</a></button>
+        <app-loading *ngIf="!loaded"></app-loading>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<nav xmlns="">
+  <div class="nav-wrapper">
+    <ul id="nav-mobile" class="left">
+      <li><a href="https://solidjobs.org">Volver a SolidJobs blog</a></li>
+    </ul>
+  </div>
+</nav>
+<header>
+  <img src="/assets/img/cv-app/img-header-logo.png" style="width: 320px;margin-top: 65px;" alt="SolidJobs"/>
+  <img src="/assets/img/cv-app/phrase.png" alt="Tu curriculum fácil y rápido"/>
+</header>
+
+<div class="row">
+  <div class="col s1 m1 l1"></div>
+  <div class="col s10 m10 l10">
+  <div class="card" style="padding: 10px;">
+    <div class="card-header">
+      <div class="card-title">
+        Accede a SolidJobs
+      </div>
+
+      <div class="card-subtitle">
+        Estás a un paso de acceder a SolidJobs, la herramienta que te ayuda a conseguir empleo.
+      </div>
+
+    </div>
+    <div class="card-content">
+
+        <form>
+          <div>
+            <label>
+              <input [ngModel]="privacyAccepted" (ngModelChange)="privacyAccepted = $event" #privacy type="checkbox" name="privacy" id="privacy"/>
+              <span>He leído y acepto la <a href="https://solidjobs.org/politica-de-privacidad" target="_blank">Política de Privacidad</a>.</span>
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input [ngModel]="commercialAccepted" (ngModelChange)="commercialAccepted = $event" type="checkbox" name="commercial" id="commercial" />
+              <span>He leído y acepto la <a href="https://solidjobs.org/politica-de-cookies/" target="_blank">Política de Cookies</a>.</span>
+            </label>
+          </div>
+
+          <span *ngIf="!(privacyAccepted && commercialAccepted)" style="color: orangered; font-size: 10px;">Para acceder necesitas aceptar las condiciones.</span>
+          <div *ngIf="!access || !(privacyAccepted && commercialAccepted)">
+            <button [disabled]="!(privacyAccepted && commercialAccepted)" (click)="access = true" class="btn">Acceder a SolidJobs</button>
+          </div>
+
+          <div  [hidden]="!access || !(privacyAccepted && commercialAccepted)">
+            <app-loading *ngIf="loading"></app-loading>
+            <span *ngIf="!loading && privacyAccepted && commercialAccepted && access"><strong>Ya puedes acceder, inicia sesión con tu cuenta de Google haciendo click en el siguiente botón:</strong></span>
+
+            <span [hidden]="loading" style="display: inline-block;vertical-align: middle; margin: 10px;" class="login-button g-signin2 z-depth-3" data-onsuccess="onSignIn"></span>
+          </div>
+
+          <div style="font-size: 12px;">
+            <p style="margin: 10px;">
+              Protección de datos
+            </p>
+            <p style="margin: 10px;">
+              El responsable del tratamiento es SOLIDJOBS. La finalidad de la recogida de datos es la de poder
+              atender sus cuestiones, sin ceder sus datos a terceros. Tiene derecho a saber qué información tenemos
+              sobre usted, corregirla o eliminarla tal y como se explica en nuestra Política de Privacidad.
+            </p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">SolidJobs</h5>
+        <p class="grey-text text-lighten-4">SolidJobs es una asociación sin ánimo de lucro que tiene como principal objetivo la inclusión laboral.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a target="_blank" class="grey-text text-lighten-3" href="https://solidjobs.org/sobre-nosotros/">Quiénes somos</a></li>
+          <li><a target="_blank" class="grey-text text-lighten-3" href="https://solidjobs.org/colabora/">Colabora</a></li>
+          <li><a target="_blank" class="grey-text text-lighten-3" href="https://solidjobs.org/politica-de-privacidad/">Política de privacidad y Cookies</a></li>
+          <li><a target="_blank" class="grey-text text-lighten-3" href="https://solidjobs.org/politica-de-cookies/">Política de Cookies</a></li>
+          <li><a target="_blank" class="grey-text text-lighten-3" href="https://solidjobs.org/avisos-legales/">Avisos legales</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2019 - 2020 Copyright SolidJobs <strong>Marca Registrada</strong>
+      <a class="grey-text text-lighten-4 right" href="https://solidjobs.org/contacto/">Contacto</a>
+    </div>
+  </div>
+</footer>

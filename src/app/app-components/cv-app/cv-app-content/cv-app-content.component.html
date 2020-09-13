@@ -1,0 +1,268 @@
+<div *ngIf="this.loaded" id="test2" class="col s12 grey lighten-5" >
+
+
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">business</i>Experiencia laboral
+        <div class="container right-align">
+          <img alt="check" class="check" width="25px" src="/assets/img/cv-app/check.svg" />
+        </div>
+
+      </div>
+      <div class="collapsible-body">
+        <div class="right-align col s3">
+          <button class="btn " type="submit" name="action" (click)="onClickAddJobExperienceButton()">Añadir experiencia
+            <i class="material-icons right">add</i></button>
+        </div>
+
+        <ul class="collapsible">
+          <app-loading *ngIf="this.jobExperiences === null || !this.loadedJobExperience"></app-loading>
+          <li *ngFor="let jobExperience of jobExperiences; let i = index" #jobExperienceElement [attr.data-job-experience-id]="jobExperience.id">
+            <div class="collapsible-header text-nowrap">{{ jobExperience.professionalCategory }} en&nbsp; <strong>{{ jobExperience.companyName }}</strong></div>
+            <div class="collapsible-body">
+              <div class="row">
+                <form class="col s12">
+
+                  <div class="input-field col s12">
+                    <input type="text" id="cargo_{{ i }}" class="validate" name="jobExperiencePC{{ jobExperience.id }}" [ngModel]="jobExperience.professionalCategory" (ngModelChange)="jobExperience.professionalCategory = $event" />
+                    <label for="cargo_{{ i }}">Cargo</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" id="empresa_{{ i }}" class="validate" name="jobExperienceCN{{ jobExperience.id }}" [ngModel]="jobExperience.companyName" (ngModelChange)="jobExperience.companyName = $event">
+                    <label for="empresa_{{ i }}">Empresa</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" id="localidad-emp_{{ i }}" class="validate" name="jobExperienceC{{ jobExperience.id }}" [ngModel]="jobExperience.city" (ngModelChange)="jobExperience.city = $event">
+                    <label for="localidad-emp_{{ i }}">Localidad</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="startDate{{ i }}" type="date" name="jobExperienceSC{{ jobExperience.id }}" [ngModel]="jobExperience.startDate | date: 'yyyy-MM-dd'" (ngModelChange)="jobExperience.startDate = $event">
+                    <label for="startDate{{ i }}" >Desde:</label>
+                  </div>
+
+                  <div class="input-field col s12" style="height: 50px;">
+                    <label>
+                      <input id="current{{ i }}" type="checkbox" name="jobExperienceCT{{ jobExperience.id }}" [ngModel]="jobExperience.current == '1'" (ngModelChange)="jobExperience.current = $event" />
+                      <span>Actualmente</span>
+                    </label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="endDatej{{ i }}" [disabled]="jobExperience.current == '1'" type="date" name="jobExperienceED{{ jobExperience.id }}" [ngModel]="jobExperience.endDate | date: 'yyyy-MM-dd'" (ngModelChange)="jobExperience.endDate = $event">
+                    <label for="endDatej{{ i }}" >Hasta:</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <textarea id="descripcion{{ i }}" class="materialize-textarea" name="jobExperienceDC{{ jobExperience.id }}" [ngModel]="jobExperience.description" (ngModelChange)="jobExperience.description = $event"></textarea>
+                    <label for="descripcion{{ i }}">Descripción</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <label style="cursor:pointer;top: -10px;" *ngIf="parseInt(jobExperience.show) == 1" (click)="jobExperience.show = 0">Experiencia visible</label>
+                    <label style="cursor:pointer;top: -10px;" *ngIf="parseInt(jobExperience.show) !== 1" (click)="jobExperience.show = 1">Experiencia no visible</label>
+                    <i style="cursor:pointer;top: -10px;" *ngIf="parseInt(jobExperience.show) == 1" (click)="jobExperience.show = 0" class="material-icons right">visibility</i>
+                    <i style="cursor:pointer;top: -10px;" *ngIf="parseInt(jobExperience.show) !== 1" (click)="jobExperience.show = 1" class="material-icons right">visibility_off</i>
+                  </div>
+
+                  <div class="right-align col s12">
+                    <div class="row right-align" *ngIf="!this.savingJobExperience">
+                      <button style="float: right;margin: 10px;" class="btn col l2 m6  s12" type="submit" (click)="onClickSaveJobExperienceButton(jobExperienceElement)" name="action">Guardar
+                        <i class="material-icons right">arrow_upward</i></button>
+                      <button style="float:right;margin: 10px;" class="btn pink col l2 m6 s12" type="submit" (click)="onClickDeleteJobExperienceButton(jobExperienceElement)" name="action">Borrar
+                        <i class="material-icons right">clear</i></button>
+                    </div>
+                    <div *ngIf="this.savingJobExperience">
+                      <app-loading></app-loading>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">class</i>Formación&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="container right-align">
+          <img alt="check" class="check" width="25px" src="/assets/img/cv-app/check.svg" />
+        </div>
+
+      </div>
+
+      <div class="collapsible-body">
+        <div class="right-align col s3">
+          <button class="btn " type="submit" (click)="onClickAddTrainingExperienceButton()" name="action">Añadir formación
+            <i class="material-icons right">add</i></button>
+        </div>
+
+        <ul class="collapsible">
+          <app-loading *ngIf="trainingExperiences === null || !this.loadedTrainingExperience"></app-loading>
+          <li *ngFor="let trainingExperience of this.trainingExperiences; let i = index" #trainingExperienceElement [attr.data-training-experience-id]="trainingExperience.id">
+            <div class="collapsible-header">{{ trainingExperience.titleName }}</div>
+            <div class="collapsible-body">
+
+
+              <div class="row">
+                <form class="col s12">
+
+                  <div class="input-field col s12">
+                    <input id="formacion{{ trainingExperience.id }}" type="text" class="validate" name="formactiontitlename{{ trainingExperience.id}}" [ngModel]="trainingExperience.titleName" (ngModelChange)="trainingExperience.titleName = $event">
+                    <label for="formacion{{ trainingExperience.id }}">Formación</label>
+                  </div>
+
+                  <div class="input-field col s6">
+                    <input id="institucion{{ trainingExperience.id }}" type="text" class="validate" name="formactioninstitutionname{{ trainingExperience.id}}" [ngModel]="trainingExperience.institutionName" (ngModelChange)="trainingExperience.institutionName = $event">
+                    <label for="institucion{{ trainingExperience.id }}">Institución</label>
+                  </div>
+
+                  <div class="input-field col s6">
+                    <input id="localidad-int{{ trainingExperience.id }}" type="text" class="validate" name="formactioncity{{ trainingExperience.id}}" [ngModel]="trainingExperience.city" (ngModelChange)="trainingExperience.city = $event">
+                    <label for="localidad-int{{ trainingExperience.id }}">Localidad</label></div>
+
+                  <div class="input-field col s12">
+                    <input id="startDateTE{{ i }}" type="date" name="trainingExperienceTE{{ trainingExperience.id }}" [ngModel]="trainingExperience.startDate | date: 'yyyy-MM-dd'" (ngModelChange)="trainingExperience.startDate = $event">
+                    <label for="startDateTE{{ i }}" >Desde:</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="endDate{{ i }}" type="date" name="jobExperienceED{{ trainingExperience.id }}" [ngModel]="trainingExperience.endDate | date: 'yyyy-MM-dd'" (ngModelChange)="trainingExperience.endDate = $event">
+                    <label for="endDate{{ i }}" >Hasta:</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <textarea id="descripcion2" class="materialize-textarea"  name="formactiondescription{{ trainingExperience.id}}" [ngModel]="trainingExperience.description" (ngModelChange)="trainingExperience.description = $event"></textarea>
+                    <label for="descripcion2">Descripción</label>
+                  </div>
+                  <div class="input-field col s6"></div>
+
+                  <div class="input-field col s12">
+                    <label style="cursor:pointer;top: -10px;" *ngIf="parseInt(trainingExperience.show) == 1" (click)="trainingExperience.show = 0">Formación visible</label>
+                    <label style="cursor:pointer;top: -10px;" *ngIf="parseInt(trainingExperience.show) != 1" (click)="trainingExperience.show = 1">Formación no visible</label>
+                    <i style="cursor:pointer;top: -10px;" *ngIf="parseInt(trainingExperience.show)== 1" (click)="trainingExperience.show = 0" class="material-icons right">visibility</i>
+                    <i style="cursor:pointer;top: -10px;" *ngIf="parseInt(trainingExperience.show) != 1" (click)="trainingExperience.show = 1" class="material-icons right">visibility_off</i>
+                  </div>
+
+                  <div class="right-align col s12">
+                    <div class="row right-align" *ngIf="!savingTrainingExperience">
+                      <button style="float: right; margin: 10px;" class="btn col l2 m6 s12" type="submit" (click)="onClickSaveTrainingExperienceButton(trainingExperienceElement)" name="action">Guardar
+                        <i class="material-icons right">arrow_upward</i></button>
+                      <button style="float: right; margin: 10px;" class="btn pink col l2 m6 s12" type="submit" (click)="onClickDeleteTrainingExperienceButton(trainingExperienceElement)" name="action">Borrar
+                        <i class="material-icons right">clear</i></button>
+                    </div>
+                    <div *ngIf="savingTrainingExperience">
+                      <app-loading></app-loading>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">mouse</i>Habilidades&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <div class="container right-align">
+          <img alt="check" class="check" width="25px" src="/assets/img/cv-app/check.svg" />
+        </div>
+      </div>
+      <div class="collapsible-body">
+        <div class="right-align col s3">
+          <button class="btn " type="submit" (click)="onClickAddAbilityButton()" name="action">Añadir habilidad
+            <i class="material-icons right">add</i></button>
+        </div>
+
+        <ul class="collapsible">
+          <app-loading *ngIf="this.abilities === null || !this.loadedAbilities"></app-loading>
+          <li *ngFor="let ability of abilities" #abilityElement [attr.data-ability-id]="ability.id">
+            <div class="collapsible-header">{{ ability.ability }}</div>
+            <div class="collapsible-body">
+              <div class="row">
+                <form class="col s12">
+                  <div class="input-field col s12">
+                    <input id="habilidad{{ ability.id }}" type="text" class="validate" name="ability{{ ability.id }}" [ngModel]="ability.ability" (ngModelChange)="ability.ability = $event">
+                    <label for="habilidad{{ ability.id }}">Habilidad</label>
+                  </div>
+
+                  <div class="right-align col s6">
+
+                  </div>
+                  <div class="right-align col s12">
+                    <div class="row right-align" *ngIf="!savingAbilities">
+                      <button style="float: right; margin: 10px;" class="btn col l2 m6 s12" type="submit" (click)="this.onClickSaveAbilityButton(abilityElement)" name="action">Guardar
+                        <i class="material-icons right">arrow_upward</i></button>
+                      <button style="float: right; margin: 10px;" class="btn pink col l2 m6 s12" type="submit" (click)="this.onClickDeleteAbilityButton(abilityElement)" name="action">Borrar
+                        <i class="material-icons right">clear</i></button>
+                    </div>
+                    <div *ngIf="savingAbilities">
+                      <app-loading></app-loading>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+    </li>
+
+    <li>
+      <div class="collapsible-header"><i class="material-icons">g_translate</i>Idiomas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="container right-align">
+          <img alt="check" class="check" width="25px" src="/assets/img/cv-app/check.svg" />
+        </div>
+
+      </div>
+      <div class="collapsible-body">
+        <div class="right-align col s3">
+          <button class="btn " type="submit" (click)="onClickAddLanguageButton()" name="action">Añadir idioma
+            <i class="material-icons right">add</i></button>
+        </div>
+
+        <ul class="collapsible">
+          <app-loading *ngIf="languages === null || !this.loadedlanguages"></app-loading>
+          <li *ngFor="let language of languages" #languageElement [attr.data-language-id]="language.id">
+            <div class="collapsible-header">{{ language.language }}</div>
+            <div class="collapsible-body">
+              <div class="row">
+                <form class="col s12">
+                  <div class="input-field col s12">
+                    <input id="idioma{{ language.id }}" type="text" class="validate" name="idioma{{ language.id }}" [ngModel]="language.language" (ngModelChange)="language.language = $event"/>
+                    <label for="idioma{{ language.id }}" >Idioma</label>
+                  </div>
+                  <div class="right-align col s12">
+                    <div class="row right-align" *ngIf="!savingLanguages">
+                      <button style="float: right;margin: 10px;" class="btn col l2 m6 s12" type="submit" name="action" (click)="this.onClickSaveLanguageButton(languageElement)" >Guardar
+                        <i class="material-icons right">arrow_upward</i></button>
+                      <button style="float: right;margin: 10px;" class="btn pink col l2 m6 s12" type="submit" (click)="this.onClickDeleteLanguageButton(languageElement)" name="action">Borrar
+                        <i class="material-icons right">clear</i></button>
+                    </div>
+                  </div>
+                  <div *ngIf="savingLanguages">
+                    <app-loading></app-loading>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+    </li>
+  </ul>
+
+
+</div>
+
+<app-loading *ngIf="!this.loaded"></app-loading>

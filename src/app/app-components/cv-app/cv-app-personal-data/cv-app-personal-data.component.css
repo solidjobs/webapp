@@ -1,0 +1,15 @@
+.input-field {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+#round-avatar {
+  border-radius: 100%;
+  cursor: pointer;
+  width: 125px;
+  height: 125px;
+  background-color: #333333;
+  display: block;
+  margin: 0 auto;
+}

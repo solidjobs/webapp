@@ -1,0 +1,58 @@
+
+<!-- Menu lateral -->
+<div class="left-align white">
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="user-view">
+        <div *ngIf="cv">
+          <img alt="Avatar" class="circle" [src]="cv.picture" />
+        </div>
+        <span *ngIf="cv" class="black-text name">{{ cv.firstName }}</span>
+        <br />
+      </div>
+    </li>
+    <li><a href="#modal1" class="modal-trigger waves-effect" ><img alt="Abrir asistente" src="/assets/img/cv-app/transparent-icon.png" style="margin-top: 11px; width: 30px;" /><span style="padding-left: 28px;">Abrir asistente por voz</span></a></li>
+    <li><a class="waves-effect" href="/cv" routerLink="/cv" (click)="closeSideNav()"><i aria-label="Crear CV" class="material-icons">create</i>Crea tu currículum</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="https://solidjobs.org/colabora/" target="_blank"><i class="material-icons">account_balance_wallet</i>Colabora, te necesitamos.</a></li>
+
+    <li>
+      <div class="divider"></div>
+    </li>
+
+    <li><a class="waves-effect" href="https://solidjobs.org/politica-de-privacidad/" target="_blank"><i class="material-icons">subject</i>Política de privacidad</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/avisos-legales/" target="_blank"><i class="material-icons">description</i>Avisos legales</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/politica-de-cookies/" target="_blank"><i class="material-icons">description</i>Política de cookies</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/" target="_blank"><i class="material-icons">home</i>Ir a solidjobs.org</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/contacto/" target="_blank"><i class="material-icons">mail</i>Contacto</a></li>
+    <li><a class="waves-effect" href="#" (click)="closeSession();"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+  </ul>
+
+  <nav>
+    <div class="nav-wrapper white">
+      <a href="#" data-target="slide-out" style="display: block !important;" class="sidenav-trigger left">
+        <i class="material-icons pink-text">menu</i>
+      </a>
+      <ul class="brand-logo center">
+        <li>
+          <img alt="Logo SolidJobs" src="/assets/img/cv-app/img-header-logo.png" style="max-width: 70px;" />
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="text-align: center;margin: 5px 0;">
+    <img alt="Solidjobs, crea tu currículum fácil" src="/assets/img/cv-app/phrase.png" style="width: 70%;max-width: 538px;" />
+  </div>
+</div>
+
+<!-- Menu tab -->
+<div class="row">
+  <ul class="tabs" id="row-tab">
+    <li class="tab col s4"><a id="tab-test1" [ngClass]="{'active': this.activeRoute === 0}" class="active" href="/cv" routerLink="/cv"><span id="tab1_test1">1.</span>Datos personales</a></li>
+    <li class="tab col s4"><a id="tab-test2" [ngClass]="{'active': this.activeRoute === 1}" href="/cv/contenido" routerLink="/cv/contenido" ><span id="tab2_test2">2.</span>Contenido</a></li>
+    <li class="tab col s4"><a id="tab-test3" [ngClass]="{'active': this.activeRoute === 2}" href="/cv/exportar" routerLink="/cv/exportar"><span id="tab3_test3">3.</span>Exportar CV</a></li>
+  </ul>
+</div>

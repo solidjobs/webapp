@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>solidJobs - Trabajo adaptado a las personas</title>
+    <base href="/">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68917204-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-68917204-4');
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Google OAuth -->
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <meta name="google-signin-client_id" content="990432426795-55t949ud8f14gli7g46mn254fg0pc100.apps.googleusercontent.com">
+
+    <script>
+        function copyToClipboard(ip) {
+            var $temp = $("<input>")
+            $("body").append($temp);
+            $temp.val(ip).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+
+        function signOut(callback) {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+            if(callback) callback();
+          });
+        }
+
+        function onLoad() {
+          gapi.load('auth2', function() {
+            gapi.auth2.init();
+          });
+        }
+
+        function onSignIn(googleUser) {
+            /**
+             * Create spinner
+             */
+            var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
+
+            console.log('id-token ' + id_token);
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+            // send to backend
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://app.solidjobs.org/api/login/oauth');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                console.log('Signed in as: ' + xhr.responseText);
+                var tokenResponse = xhr.responseText;
+                var tokenParsed = JSON.parse(tokenResponse);
+
+                if(tokenParsed.hasOwnProperty('token'))
+                {
+                    localStorage.setItem('session', tokenParsed.token);
+                    document.location = '/cv';
+                }
+
+                console.log(JSON.parse(tokenResponse).hasOwnProperty('token'));
+                // get the token id from app
+            };
+            xhr.send('idtoken=' + id_token);
+        }
+    </script>
+    <script>
+        function loadCaptcha() {
+            if (document.getElementById('html_captcha') != null) {
+                grecaptcha_id = grecaptcha.render('html_captcha', {'sitekey': '6LePrCcUAAAAAAtTMl65mWT_MHkwOA2yM4-YGb4c'});
+                localStorage.setItem('grecaptcha_id', grecaptcha_id);
+            } else {
+                setTimeout(loadCaptcha, 2000);
+            }
+        }
+    </script>
+
+    <!--****************Materialize*************-->
+    <!--Materialize: Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Materialize: Compiled and minified CSS -->
+    <link rel="stylesheet" href="/assets/css/materialize.min.css">
+
+    <!-- Materialize: Compiled and minified JavaScript -->
+    <script src="/assets/js/materialize.min.js"></script>
+
+    <!-- Inicializar todo el javascript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
+    <!--*****************Fin Materialize***************-->
+
+    <script src="/assets/js/oauth-google.js"></script>
+</head>
+<body>
+
+    <app-root></app-root>
+
+</body>
+</html>

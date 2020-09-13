@@ -1,0 +1,14 @@
+header {
+  width: 100%;
+  text-align: center;
+}
+
+header img {
+  max-width: 100%;
+}
+
+.login-button {
+  width: 120px;
+  position: relative;
+  margin: 25px auto 45px;
+}

@@ -1,0 +1,8 @@
+#margin-content {margin-bottom: 1%;}
+#number{font-size: 1.5em;}
+#round-avatar{border-radius: 50%; }
+#check{margin-left:50%;}
+.text-nowrap{
+    white-space: nowrap;
+}
+

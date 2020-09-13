@@ -1,0 +1,120 @@
+<!-- isLoaded -->
+<div id="test1" class="col s12 " *ngIf="loaded">
+
+  <div class="center-align section container">
+    <img (click)="changeProfilePictureDialog(profilePicture)" title="Click para cambiar imagen de perfil." id="round-avatar" src="{{ cv.picture }}" width="20%" />
+    <div style="padding-top: 10px;">
+      <button (click)="changeProfilePictureDialog(profilePicture)" class="btn white"><i aria-label="Subir nueva foto de perfil" style="color: #333333;" class="material-icons">camera_alt</i><span style="color: #333333;vertical-align: top;">Subir nueva foto</span></button>
+    </div>
+    <input #profilePicture [hidden]="true" (change)="changeProfilePicture($event)" type="file" name="profile_picture" id="profile_picture" />
+  </div>
+
+  <form #personalDataForm (ngSubmit)="onSubmitCVForm(personalDataForm)" class="col s12">
+
+    <div class="section container">
+      <div>
+        <label for="nombre">Nombre</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="nombre" name="firstName" type="text" class="validate" [ngModel]="this.cv.firstName" (ngModelChange)="cv.firstName = $event" />
+      </div>
+
+      <div>
+        <label for="apellidos">Apellidos</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="apellidos" name="lastName" type="text" class="validate" [ngModel]="this.cv.lastName" (ngModelChange)="cv.lastName = $event" />
+      </div>
+      <div>
+        <label for="telefono">Teléfono</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="telefono" type="text" class="validate" name="phone" [ngModel]="this.cv.phone" (ngModelChange)="cv.phone = $event" />
+      </div>
+
+      <div>
+        <label for="email">Correo electróncio</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="email" type="text" class="validate" name="email" [ngModel]="this.cv.email" (ngModelChange)="cv.email = $event" >
+      </div>
+
+      <div>
+        <label for="ciudad">Ciudad</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="ciudad" type="text" class="validate" name="city" [ngModel]="this.cv.city" (ngModelChange)="cv.city = $event" >
+      </div>
+
+      <div>
+        <label for="direccion">Dirección</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="direccion" type="text" class="validate" name="localAddress" [ngModel]="this.cv.localAddress" (ngModelChange)="cv.localAddress = $event" >
+      </div>
+
+      <div>
+        <label for="profesion">Profesión</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="profesion" type="text" class="validate" name="jobName" [ngModel]="this.cv.jobName" (ngModelChange)="cv.jobName = $event">
+      </div>
+
+      <div class="right-align row" *ngIf="!saving">
+        <div class="col s0 m6 l10"></div>
+        <button class="btn yellow col l2 m6 s12 accent-4 grey-text text-darken-4 font-weight-bold" type="submit" name="action">Guardar</button>
+      </div>
+      <app-loading *ngIf="saving"></app-loading>
+
+    </div>
+
+  </form>
+
+</div>
+
+<!-- Loading -->
+<div *ngIf="!loaded" class="center-align section container">
+
+  <div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-blue">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+    </div>
+
+    <div class="spinner-layer spinner-red">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+    </div>
+
+    <div class="spinner-layer spinner-yellow">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+    </div>
+
+    <div class="spinner-layer spinner-green">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+    </div>
+  </div>
+
+</div>
