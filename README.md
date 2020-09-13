@@ -10,7 +10,7 @@
 ## Setting up development environment 🛠
 
 ```
-git clone https://github.com/xxxxxxxxxxxxxxxxx .
+git clone https://github.com/solidjobs/webapp .
 npm install
 ng serve
 ```
