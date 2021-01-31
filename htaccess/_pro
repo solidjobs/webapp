@@ -1,0 +1,11 @@
+Options +Indexes
+CheckSpelling off
+RewriteEngine On
+RewriteBase /
+AddHandler cgi-script .cgi .asp
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule !^api index.html
+RewriteRule ^api/[a-zA-Z\-_0-9/]*$ /api/index.php [L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
