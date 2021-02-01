@@ -65,7 +65,7 @@
 
             // send to backend
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'https://app.solidjobs.org/api/login/oauth');
+            xhr.open('POST', 'https://backend.solidjobs.org/login/oauth');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
                 console.log('Signed in as: ' + xhr.responseText);
