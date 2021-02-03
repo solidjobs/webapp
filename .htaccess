@@ -1,5 +1,4 @@
 Options +Indexes
-CheckSpelling off
 RewriteEngine On
 RewriteBase /
 AddHandler cgi-script .cgi .asp
