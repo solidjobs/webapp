@@ -35,11 +35,11 @@
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
-    "webpack": "^4.41.2",
+    "webpack": "^5.75.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.3",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular/cli": "^8.3.3",
     "@angular/compiler-cli": "^8.2.5",
     "@types/jasmine": "^3.4.0",
