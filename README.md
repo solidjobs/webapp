@@ -7,7 +7,15 @@
 </p>
 <h1 align="center"><a href="https://solidjobs.org/">SolidJobs</a> - Open Source Panel</h1>
 
-## Setting up development environment 🛠
+## (docker) Setting up development environment 🛠
+
+The easiest way to work in this project (docker and docker-compose required):
+
+```bash
+make up
+```
+
+## (no docker) Setting up development environment 🛠
 
 ```
 git clone https://github.com/solidjobs/webapp .
