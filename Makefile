@@ -6,4 +6,4 @@ down:
 	@docker-compose down || docker compose down
 
 build:
-	@docker-compose run -it web ng build --prod || docker compose run -it web ng build --prod
+	@docker-compose run -it solidjobs-web ng build --prod || docker compose run -it solidjobs-web ng build --prod
