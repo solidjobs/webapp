@@ -1,12 +1,19 @@
 version: '3'
 services:
   solidjobs-web:
-    build: .
+    build: docker/angular/
     container_name: solidjobs-web
     command: ng serve --host 0.0.0.0 --port 4200
     volumes:
       - ./:/app
     ports:
       - "4200:4200"
+    working_dir: /app
+    privileged: true
+  solidjobs-php:
+    build: docker/php/
+    container_name: solidjobs-php
+    volumes:
+      - ./:/app
     working_dir: /app
     privileged: true

@@ -43,6 +43,12 @@ ng serve
 * Paste the code into the `session`'s key value field
 * Your Open Source Panel should now be linked to `app.solidjobs.org`
 
+
+## Build to production (usually no-admin developers won't need this)
+
+1. ./build_prod
+2. Enjoy.
+
 ## Developers ✨
 
 <table>
