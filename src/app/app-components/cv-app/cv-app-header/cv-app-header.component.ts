@@ -56,6 +56,24 @@ export class CvAppHeaderComponent implements OnInit {
     personalData.click();
   }
 
+  navigateToTraining() {
+    this.activeRoute = 0;
+
+    const element: HTMLElement = document.getElementsByClassName('sidenav-overlay')[0] as HTMLElement;
+
+    element.click();
+
+    const personalData: HTMLElement = document.getElementById('tab-test1') as HTMLElement;
+
+    personalData.click();
+
+    this.router.navigate(['/training']);
+  }
+
+  isTrainingActivated() {
+    return localStorage.getItem('training') == '1';
+  }
+
   /**
    * Close session
    */
