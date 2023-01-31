@@ -1,7 +1,7 @@
 version: '3'
 services:
   solidjobs-web:
-    build: 
+    build:
       context: .
       dockerfile: ./docker/angular/Dockerfile
     container_name: solidjobs-web
@@ -12,10 +12,10 @@ services:
       - "4200:4200"
     working_dir: /app
     privileged: true
-  solidjobs-php:
-    build: docker/php/
-    container_name: solidjobs-php
-    volumes:
-      - ./:/app
-    working_dir: /app
-    privileged: true
+#  solidjobs-php:
+#    build: docker/php/
+#    container_name: solidjobs-php
+#    volumes:
+#      - ./:/app
+#    working_dir: /app
+#    privileged: true
