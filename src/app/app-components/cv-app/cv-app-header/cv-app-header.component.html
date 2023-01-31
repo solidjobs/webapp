@@ -13,7 +13,7 @@
     </li>
     <li><a href="#modal1" class="modal-trigger waves-effect" ><img alt="Abrir asistente" src="/assets/img/cv-app/transparent-icon.png" style="margin-top: 11px; width: 30px;" /><span style="padding-left: 28px;">Abrir asistente por voz</span></a></li>
     <li><a class="waves-effect" href="/cv" routerLink="/cv" (click)="closeSideNav()"><i aria-label="Crear CV" class="material-icons">create</i>Crea tu currículum</a></li>
-    <li><a *ngIf="isTrainingActivated()" class="waves-effect" href="/cv" routerLink="/cv" (click)="closeSideNav()"><i aria-label="Crear CV" class="material-icons">book</i>Estudia y fórmate</a></li>
+    <li><a *ngIf="isTrainingActivated()" class="waves-effect" href="/training" routerLink="/training" (click)="navigateToTraining()"><i aria-label="Crear CV" class="material-icons">book</i>Estudia y fórmate</a></li>
     <li>
       <div class="divider"></div>
     </li>
