@@ -56,6 +56,10 @@ export class CvAppHeaderComponent implements OnInit {
     personalData.click();
   }
 
+  isTrainingActivated() {
+    return localStorage.getItem('training') == '1';
+  }
+
   /**
    * Close session
    */
