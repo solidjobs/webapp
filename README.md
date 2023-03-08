@@ -60,7 +60,7 @@ ng serve
     <td align="center">
       <a href="https://twitter.com/AidaTrazos">
         <img alt="Aida profile's picture, she has black and blue long hair" 
-          src="https://pbs.twimg.com/profile_images/1347212619262947331/_Gv_AZ4D_400x400.jpg" width="64px;"/>
+          src="https://pbs.twimg.com/profile_images/1586420264526544896/x67cK6sQ_400x400.jpg" width="64px;"/>
             <br /><sub><b>Aida Puigdellivol</b></sub></a><br /></td>
     <td align="center">
       <a href="https://github.com/mel-caballero">
