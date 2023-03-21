@@ -14,10 +14,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Decode SSH key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY_BASE64 }}" | base64 --decode > id_rsa
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.4.1
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ steps.decode_ssh_key.outputs.private_key }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -26,4 +28,4 @@ jobs:
           push: true
           tags: hanschrome/solidjobs-web:latest
           args: |
-            --build-arg SSH_PRIVATE_KEY="${{ secrets.SSH_PRIVATE_KEY }}"
+            --build-arg SSH_PRIVATE_KEY="${{ steps.decode_ssh_key.outputs.private_key }}"
