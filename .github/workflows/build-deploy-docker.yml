@@ -15,14 +15,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Decode SSH key
-        id: decode_ssh_key
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > id_rsa
-          echo "PRIVATE_KEY=$(cat id_rsa)" >> $GITHUB_ENV
+        run: echo "${{ secrets.SSH_PRIVATE_KEY_BASE64 }}" | base64 --decode > id_rsa
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.4.1
         with:
-          ssh-private-key: ${{ env.PRIVATE_KEY }}
+          ssh-private-key: ${{ github.workspace }}/id_rsa
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
