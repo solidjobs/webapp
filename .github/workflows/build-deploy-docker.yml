@@ -15,7 +15,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Decode SSH key
-        run: echo "${{ secrets.SSH_PRIVATE_KEY_BASE64 }}" | base64 --decode > id_rsa
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > id_rsa
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.4.1
         with:
