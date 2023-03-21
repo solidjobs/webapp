@@ -17,7 +17,7 @@ jobs:
       - name: Decode SSH key
         id: decode_ssh_key
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY_BASE64 }}" | base64 --decode > id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > id_rsa
           echo "PRIVATE_KEY=$(cat id_rsa)" >> $GITHUB_ENV
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.4.1
