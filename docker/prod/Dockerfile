@@ -18,5 +18,6 @@ RUN php composer.phar install
 
 FROM nginx:latest
 COPY --from=node_build /app/dist /usr/share/nginx/html
+COPY --from=php_build /app/dist/dialogflow /usr/share/nginx/html/dialogflow
 EXPOSE 8001
 CMD ["nginx", "-g", "daemon off;"]
