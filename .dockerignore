@@ -1,0 +1,13 @@
+.git
+.*ignore
+.idea
+.vscode
+node_modules
+dist
+.editorconfig
+htaccess/*
+.htaccess
+*.md
+Makefile
+docker-compose*.yml
+**/Dockerfile*
