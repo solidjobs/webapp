@@ -1,7 +1,7 @@
 <div class="container" *ngIf="course && lectures">
-  <h5>Curso: {{ course.title }}</h5>
+  <h5>{{ course.title }}</h5>
   <p>Duración: {{ Math.ceil(course.duration/3600) }} horas</p>
-  <h6>Lección {{ currentLectureIndex + 1 }} de {{ lectures.length }}: <b>{{ lectures[currentLectureIndex]?.skill }}</b></h6>
+  <h6>Lección {{ currentLectureIndex + 1 }} de {{ lectures.length }}</h6>
   <div class="video-container">
     <div class="progress">
       <div class="determinate" [style.width]="(currentLectureIndex/lectures.length * 100+10) + '%'"></div>
@@ -12,6 +12,9 @@
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
     ></iframe>
+  </div>
+  <div>
+    <b>{{ lectures[currentLectureIndex]?.skill }}</b>
   </div>
   <div class="lecture-navigation">
     <button title="Vídeo anterior" class="btn" (click)="goToPreviousLecture()" [disabled]="currentLectureIndex === 0">&larr;</button>
