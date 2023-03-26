@@ -1,21 +1,24 @@
 <div class="container" *ngIf="course && lectures">
-  <h5>{{ course.title }}</h5>
-  <h6>Lección {{ currentLectureIndex + 1 }} de {{ lectures.length }}</h6>
+  <h5>Curso: {{ course.title }}</h5>
+  <h6>Lección {{ currentLectureIndex + 1 }} de {{ lectures.length }}: <b>{{ lectures[currentLectureIndex]?.skill }}</b></h6>
   <div class="video-container">
+    <div class="progress">
+      <div class="determinate" [style.width]="(currentLectureIndex/lectures.length * 100+10) + '%'"></div>
+    </div>
     <iframe
       [src]="getVideoUrl(lectures[currentLectureIndex]?.youtube_code)"
-      frameborder="0"
+      style="border: 0; padding: 10px 0;"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
     ></iframe>
   </div>
   <div class="lecture-navigation">
     <button class="btn" (click)="goToPreviousLecture()" [disabled]="currentLectureIndex === 0">&larr;</button>
-    <button class="btn" (click)="goToNextLecture()" [disabled]="currentLectureIndex === lectures.length - 1">&rarr;</button>
+    <button class="btn" (click)="goToNextLecture()" [disabled]="currentLectureIndex === lectures.length - 1 || lectures[currentLectureIndex].status === 0">&rarr;</button>
   </div>
   <div class="lecture-action">
     <label>
-      <input type="checkbox" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
+      <input type="checkbox" [checked]="lectures[currentLectureIndex]?.status === 1" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
       <span>Visto</span>
     </label>
   </div>
