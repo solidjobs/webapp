@@ -1,1 +1,6 @@
-<p>training-header works!</p>
+<div class="row">
+  <ul class="tabs" id="row-tab">
+    <li class="tab col s6"><a [ngClass]="{'active': this.index === 0}" class="active" href="/studies" routerLink="/studies"><span>1.</span>Estudiar</a></li>
+    <li class="tab col s6"><a [ngClass]="{'active': this.index === 1}" href="/studies/certificates" routerLink="/studies/certificates" ><span>2.</span>Certificados</a></li>
+  </ul>
+</div>

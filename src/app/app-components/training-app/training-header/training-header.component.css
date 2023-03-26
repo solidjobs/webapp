@@ -1,0 +1,34 @@
+#margin-content {margin-bottom: 1%;}
+#number{font-size: 1.5em;}
+#round-avatar{border-radius: 50%; }
+#check{margin-left:50%;}
+.text-nowrap{
+  white-space: nowrap;
+}
+
+.user-view {
+  text-align: center;
+}
+
+.circle {
+  margin: 0 auto;
+  position: relative;
+}
+
+@media screen and (max-width: 425px) {
+  .tabs .tab a {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .tabs .tab a {
+    font-size: 9px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .tabs .tab a {
+    font-size: 7px;
+  }
+}

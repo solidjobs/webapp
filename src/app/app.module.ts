@@ -26,6 +26,7 @@ import { TrainingAppComponent } from './app-components/training-app/training-app
 import { CreateCourseComponent } from './app-components/training-app/create-course/create-course.component';
 import { TrainingHeaderComponent } from './app-components/training-app/training-header/training-header.component';
 import { CourseComponent } from './app-components/training-app/course/course.component';
+import { CourseCertificateComponent } from './app-components/training-app/course-certificate/course-certificate.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TrainingAppComponent,
     CreateCourseComponent,
     TrainingHeaderComponent,
-    CourseComponent
+    CourseComponent,
+    CourseCertificateComponent
   ],
   imports: [
     BrowserModule,

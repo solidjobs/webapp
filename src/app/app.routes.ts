@@ -10,6 +10,7 @@ import {CvAppExportComponent} from './app-components/cv-app/cv-app-export/cv-app
 import {TrainingAppComponent} from "./app-components/training-app/training-app.component";
 import {CreateCourseComponent} from './app-components/training-app/create-course/create-course.component';
 import {CourseComponent} from './app-components/training-app/course/course.component';
+import {CourseCertificateComponent} from './app-components/training-app/course-certificate/course-certificate.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomepageComponent},
@@ -41,6 +42,10 @@ const appRoutes: Routes = [
       {
         path: 'course/:uuid',
         component: CourseComponent
+      },
+      {
+        path: 'certificates',
+        component: CourseCertificateComponent
       }
     ]
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-training-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  index = 0;
+
+  url_index = {
+    '/studies': 0,
+    '/studies/certificates': 1
+  }
 
   ngOnInit() {
+     this.index = this.url_index[this.router.url];
   }
 
 }

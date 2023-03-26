@@ -70,7 +70,7 @@
   </style>
 </head>
 <body onload="scrollToContent()">
-<div class="container">
+<div class="container" *ngIf="!loading && !course">
   <div class="card z-depth-3">
     <div class="card-image">
       <img class="axolotl-image" src="/assets/img/cv-app/img-header-logo.png" alt="Axolotl">
@@ -105,6 +105,7 @@
     </div>
   </div>
 </div>
+<app-loading *ngIf="loading"></app-loading>
 <script>
   function scrollToContent() {
     const container = document.querySelector('.container');
