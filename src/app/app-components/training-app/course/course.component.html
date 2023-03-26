@@ -18,7 +18,7 @@
   </div>
   <div class="lecture-action">
     <label>
-      <input type="checkbox" [checked]="lectures[currentLectureIndex]?.status === 1" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
+      <input type="checkbox" [(ngModel)]="lectures[currentLectureIndex].status" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
       <span>Visto</span>
     </label>
   </div>
