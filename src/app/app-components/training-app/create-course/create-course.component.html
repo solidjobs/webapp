@@ -111,7 +111,24 @@
     </div>
   </div>
 </div>
-<app-loading *ngIf="loading"></app-loading>
+<div class="container" *ngIf="loading">
+  <div class="card">
+    <div class="card-image">
+      <img class="axolotl-image" src="/assets/img/cv-app/img-header-logo.png" alt="Axolotl">
+    </div>
+    <div class="card-content">
+      <app-loading></app-loading>
+    </div>
+    <div style="text-align: center">
+      <p>Tiempo de espera estimado: {{ countdown$ | async }}/30</p>
+
+      <div class="progress">
+        <div class="determinate" [style.width]="(getWaitingTime()/30*100) + '%'"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
 <script>
   function scrollToContent() {
     const container = document.querySelector('.container');

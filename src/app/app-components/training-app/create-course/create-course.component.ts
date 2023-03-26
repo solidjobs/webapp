@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {interval} from 'rxjs';
+import {map, takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-course',
@@ -14,11 +17,22 @@ export class CreateCourseComponent implements OnInit {
   courseQuery = '';
   errorMessage: string;
   error: any;
+  lastSend: number;
+  countdown$: Observable<number>;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
+    this.lastSend = Math.floor(Date.now()/1000);
     this.getCourse();
+    this.startCountdown();
+  }
+
+  startCountdown() {
+    this.countdown$ = interval(1000).pipe(
+      map(() => Math.floor(Date.now()/1000) - this.lastSend),
+      // takeWhile(count => count > 0)
+    );
   }
 
   getCourse() {
@@ -45,6 +59,7 @@ export class CreateCourseComponent implements OnInit {
 
     const token = localStorage.getItem('session');
     const headers = {token: token};
+    this.lastSend = Math.floor(Date.now()/1000);
     this.http.post('https://studies.solidjobs.org/course', {prompt: this.courseQuery}, {headers}).subscribe((course: any) => {
       this.router.navigate(['/studies/course', course.uuid]);
     }, (error) => {
@@ -72,5 +87,10 @@ export class CreateCourseComponent implements OnInit {
     }
 
     this.error = error.error;
+  }
+
+  getWaitingTime() {
+    let waiting = (Math.floor(Date.now()/1000) - this.lastSend);
+    return waiting > 30 ? 30 : waiting;
   }
 }
