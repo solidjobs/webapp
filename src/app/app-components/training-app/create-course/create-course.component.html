@@ -79,7 +79,7 @@
       <div class="list-container">
         <h5>¿Cómo funciona?</h5>
         <ul>
-          <li><b>Escribe lo que quieres estudiar</b> y Ote generará un curso personalizado para ti.</li>
+          <li><b>Escribe lo que quieres estudiar</b> y Ote generará un curso personalizado para ti usando su <i>IA (Inteligencia Artificial)</i>.</li>
           <li>Al completar el curso, <b>recibirás un certificado</b> que indica las horas dedicadas, por ejemplo: "Certificado de 6 horas en 'Retoque fotográfico con Photoshop'".</li>
         </ul>
 
@@ -93,12 +93,18 @@
         <h5>Nota importante:</h5>
         <p>Ote está en constante desarrollo y es posible que encuentres errores o demoras al generar un curso. ¡Ten paciencia! Estamos trabajando para mejorar la plataforma en los próximos meses.</p>
 
+        <div *ngIf="!errorMessage" class="error-message-container">
+          <h5 style="color: red">¿Por qué ha ocurrido este error?</h5>
+          <p>Parece que: {{ errorMessage }}.</p>
+          <p>Por favor, ten en cuenta que esto es un Proof Of Concept y muchas cosas serán mejoradas tras estudiar el producto.</p>
+          <p><i>Puedes volver a intentarlo en un minuto.</i></p>
+        </div>
       </div>
     </div>
     <div class="card-action">
       <div class="course-query-container">
         <label for="course-query">Quiero aprender</label>
-        <input id="course-query" type="text" placeholder="Inglés nivel básico">
+        <input [(ngModel)]="courseQuery" id="course-query" type="text" placeholder="Inglés nivel básico">
         <button class="btn-small waves-effect waves-light btn-send"><i class="material-icons">send</i>
         </button>
       </div>

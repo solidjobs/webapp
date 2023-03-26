@@ -9,8 +9,11 @@ import {Router} from '@angular/router';
 })
 export class CreateCourseComponent implements OnInit {
 
-  private course: any;
-  private loading = true;
+  course: any;
+  loading = true;
+  courseQuery: string;
+  errorMessage: string;
+  error: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -36,4 +39,38 @@ export class CreateCourseComponent implements OnInit {
     }
   }
 
+  createCourse() {
+    this.loading = true;
+    this.errorMessage = null;
+
+    const token = localStorage.getItem('session');
+    const headers = {token: token};
+    this.http.post('https://studies.solidjobs.org/course', {prompt: this.courseQuery}, {headers}).subscribe((course: any) => {
+      this.router.navigate(['/studies/course', course.uuid]);
+    }, (error) => {
+      this.loading = false;
+      this.handleErrorResponse(error);
+    });
+  }
+
+  handleErrorResponse(error) {
+    if (error.status === 429) {
+      this.errorMessage = 'Has superado el límite de solicitudes. Por favor, inténtalo de nuevo más tarde.';
+    } else {
+      switch (error.error.type) {
+        case 'COURSE_RATIO':
+          this.errorMessage = 'Ha ocurrido un error al generar el curso. Por favor, inténtalo de nuevo.';
+          break;
+        case 'API_COMMUNICATION':
+          this.errorMessage = 'No se ha podido comunicar con la API. Por favor, inténtalo de nuevo.';
+          break;
+        case 'UNKNOWN':
+        default:
+          this.errorMessage = 'Ha ocurrido un error desconocido. Por favor, inténtalo de nuevo.';
+          break;
+      }
+    }
+
+    this.error = error.error;
+  }
 }
