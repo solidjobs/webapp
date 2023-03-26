@@ -11,7 +11,7 @@ export class CreateCourseComponent implements OnInit {
 
   course: any;
   loading = true;
-  courseQuery: string;
+  courseQuery = '';
   errorMessage: string;
   error: any;
 

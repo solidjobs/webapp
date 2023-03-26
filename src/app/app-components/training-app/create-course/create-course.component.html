@@ -93,7 +93,7 @@
         <h5>Nota importante:</h5>
         <p>Ote está en constante desarrollo y es posible que encuentres errores o demoras al generar un curso. ¡Ten paciencia! Estamos trabajando para mejorar la plataforma en los próximos meses.</p>
 
-        <div *ngIf="!errorMessage" class="error-message-container">
+        <div *ngIf="errorMessage" class="error-message-container">
           <h5 style="color: red">¿Por qué ha ocurrido este error?</h5>
           <p>Parece que: {{ errorMessage }}.</p>
           <p>Por favor, ten en cuenta que esto es un Proof Of Concept y muchas cosas serán mejoradas tras estudiar el producto.</p>
@@ -105,7 +105,7 @@
       <div class="course-query-container">
         <label for="course-query">Quiero aprender</label>
         <input [(ngModel)]="courseQuery" id="course-query" type="text" placeholder="Inglés nivel básico">
-        <button class="btn-small waves-effect waves-light btn-send"><i class="material-icons">send</i>
+        <button [title]="courseQuery.length < 3 ? 'Escribe un título.' : 'Generar el curso.'" [disabled]="courseQuery.length < 3" (click)="createCourse()" class="btn-small waves-effect waves-light btn-send"><i class="material-icons">send</i>
         </button>
       </div>
     </div>
