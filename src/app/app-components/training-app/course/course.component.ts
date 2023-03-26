@@ -9,6 +9,9 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+
+  Math = Math;
+
   courseUuid: string;
   course: any;
   lectures: any[];
@@ -57,6 +60,8 @@ export class CourseComponent implements OnInit {
   goToNextLecture() {
     if (this.currentLectureIndex < this.lectures.length - 1) {
       this.currentLectureIndex++;
+    } else {
+      this.getCourse();
     }
   }
 

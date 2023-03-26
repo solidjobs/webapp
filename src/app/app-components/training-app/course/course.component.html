@@ -1,5 +1,6 @@
 <div class="container" *ngIf="course && lectures">
   <h5>Curso: {{ course.title }}</h5>
+  <p>Duración: {{ Math.ceil(course.duration/3600) }} horas</p>
   <h6>Lección {{ currentLectureIndex + 1 }} de {{ lectures.length }}: <b>{{ lectures[currentLectureIndex]?.skill }}</b></h6>
   <div class="video-container">
     <div class="progress">
@@ -13,17 +14,19 @@
     ></iframe>
   </div>
   <div class="lecture-navigation">
-    <button class="btn" (click)="goToPreviousLecture()" [disabled]="currentLectureIndex === 0">&larr;</button>
-    <button class="btn" (click)="goToNextLecture()" [disabled]="currentLectureIndex === lectures.length - 1 || lectures[currentLectureIndex].status === 0">&rarr;</button>
+    <button title="Vídeo anterior" class="btn" (click)="goToPreviousLecture()" [disabled]="currentLectureIndex === 0">&larr;</button>
+    <button title="Siguiente vídeo" class="btn" (click)="goToNextLecture()" [disabled]="currentLectureIndex === lectures.length - 1 || lectures[currentLectureIndex].status === 0">&rarr;</button>
   </div>
-  <div class="lecture-action">
+  <div class="lecture-action" *ngIf="!isCourseCompleted()">
     <label>
       <input type="checkbox" [(ngModel)]="lectures[currentLectureIndex].status" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
       <span>Visto</span>
     </label>
   </div>
   <div *ngIf="isCourseCompleted()">
-    <a class="btn" href="https://studies.solidjobs.org/course/{{courseUuid}}/certificate">Obtén tu certificado</a>
+    <p>¡Enhorabuena! Has conseguido terminar el curso, aquí está tu certificado.</p>
+    <a class="btn right" target="_blank" href="https://studies.solidjobs.org/course/{{courseUuid}}/certificate">Obtén tu certificado</a>
+    <p style="clear: both">Y recuerda <a href="/cv">agregarlo a tu CV.</a></p>
   </div>
 </div>
 <app-loading *ngIf="this.loading"></app-loading>
