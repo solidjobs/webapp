@@ -25,6 +25,7 @@ import {PanelApiTokenService} from './services/panel-api-services/panel-api-toke
 import { TrainingAppComponent } from './app-components/training-app/training-app.component';
 import { CreateCourseComponent } from './app-components/training-app/create-course/create-course.component';
 import { TrainingHeaderComponent } from './app-components/training-app/training-header/training-header.component';
+import { CourseComponent } from './app-components/training-app/course/course.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -45,8 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingComponent,
     TrainingAppComponent,
     CreateCourseComponent,
-    TrainingHeaderComponent
-
+    TrainingHeaderComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

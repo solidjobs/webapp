@@ -9,6 +9,7 @@ import {CvAppContentComponent} from './app-components/cv-app/cv-app-content/cv-a
 import {CvAppExportComponent} from './app-components/cv-app/cv-app-export/cv-app-export.component';
 import {TrainingAppComponent} from "./app-components/training-app/training-app.component";
 import {CreateCourseComponent} from './app-components/training-app/create-course/create-course.component';
+import {CourseComponent} from './app-components/training-app/course/course.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomepageComponent},
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
         path: '',
         component: CreateCourseComponent
       },
+      {
+        path: 'course/:uuid',
+        component: CourseComponent
+      }
     ]
   }
 ];

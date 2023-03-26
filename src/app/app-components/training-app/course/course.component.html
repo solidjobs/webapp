@@ -1,0 +1,26 @@
+<div class="container" *ngIf="course && lectures">
+  <h5>{{ course.title }}</h5>
+  <h6>Lección {{ currentLectureIndex + 1 }} de {{ lectures.length }}</h6>
+  <div class="video-container">
+    <iframe
+      [src]="getVideoUrl(lectures[currentLectureIndex]?.youtube_code)"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="lecture-navigation">
+    <button class="btn" (click)="goToPreviousLecture()" [disabled]="currentLectureIndex === 0">&larr;</button>
+    <button class="btn" (click)="goToNextLecture()" [disabled]="currentLectureIndex === lectures.length - 1">&rarr;</button>
+  </div>
+  <div class="lecture-action">
+    <label>
+      <input type="checkbox" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
+      <span>Visto</span>
+    </label>
+  </div>
+  <div *ngIf="isCourseCompleted()">
+    <a class="btn" href="https://studies.solidjobs.org/course/{{courseUuid}}/certificate">Obtén tu certificado</a>
+  </div>
+</div>
+<app-loading *ngIf="this.loading"></app-loading>
