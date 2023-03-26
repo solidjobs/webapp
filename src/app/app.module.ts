@@ -23,6 +23,8 @@ import {PanelApiCvExportPdfService} from './services/panel-api-services/panel-ap
 import {LoadingComponent} from './app-components/commons/loading/loading.component';
 import {PanelApiTokenService} from './services/panel-api-services/panel-api-token.service';
 import { TrainingAppComponent } from './app-components/training-app/training-app.component';
+import { CreateCourseComponent } from './app-components/training-app/create-course/create-course.component';
+import { TrainingHeaderComponent } from './app-components/training-app/training-header/training-header.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -41,7 +43,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CvAppPersonalDataComponent,
     CvAppHeaderComponent,
     LoadingComponent,
-    TrainingAppComponent
+    TrainingAppComponent,
+    CreateCourseComponent,
+    TrainingHeaderComponent
 
   ],
   imports: [

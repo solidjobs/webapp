@@ -8,6 +8,7 @@ import {CvAppPersonalDataComponent} from './app-components/cv-app/cv-app-persona
 import {CvAppContentComponent} from './app-components/cv-app/cv-app-content/cv-app-content.component';
 import {CvAppExportComponent} from './app-components/cv-app/cv-app-export/cv-app-export.component';
 import {TrainingAppComponent} from "./app-components/training-app/training-app.component";
+import {CreateCourseComponent} from './app-components/training-app/create-course/create-course.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomepageComponent},
@@ -30,8 +31,13 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'training', component: TrainingAppComponent, canActivate: [AuthGuardService],
-    children: []
+    path: 'studies', component: TrainingAppComponent, canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        component: CreateCourseComponent
+      },
+    ]
   }
 ];
 

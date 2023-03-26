@@ -5,5 +5,8 @@ up:
 down:
 	@docker-compose down || docker compose down
 
+shell:
+	@docker-compose run -it solidjobs-web bash || docker compose run -it solidjobs-web bash
+
 build:
 	@docker-compose run -it solidjobs-web ng build --prod || docker compose run -it solidjobs-web ng build --prod

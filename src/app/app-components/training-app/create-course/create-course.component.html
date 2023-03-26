@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolidStudies</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .axolotl-image {
+      height: 112px;
+      width: 140px !important;
+      margin: 0 auto;
+    }
+
+    .list-container {
+      padding-left: 1rem;
+    }
+
+    .list-container li {
+      padding: 4px 0;
+    }
+
+    .list-container ul {
+      list-style-type: circle;
+      padding-left: 20px;
+    }
+
+    .course-query-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .course-query-container label {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
+    .course-query-container input {
+      flex-grow: 1;
+    }
+
+    .btn-send {
+      margin-left: 10px;
+    }
+
+    .list-container li::before {
+      content: '•' !important;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .list-container ul li::before {
+      content: '';
+    }
+
+    @media (min-width: 601px) {
+      .container {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body onload="scrollToContent()">
+<div class="container">
+  <div class="card z-depth-3">
+    <div class="card-image">
+      <img class="axolotl-image" src="/assets/img/cv-app/img-header-logo.png" alt="Axolotl">
+    </div>
+    <div class="card-content">
+      <div class="list-container">
+        <h5>¿Cómo funciona?</h5>
+        <ul>
+          <li><b>Escribe lo que quieres estudiar</b> y Ote generará un curso personalizado para ti.</li>
+          <li>Al completar el curso, <b>recibirás un certificado</b> que indica las horas dedicadas, por ejemplo: "Certificado de 6 horas en 'Retoque fotográfico con Photoshop'".</li>
+        </ul>
+
+        <h5>Consejos para generar tu curso:</h5>
+        <ul>
+          <li><b>Usa un lenguaje preciso</b> al describir lo que deseas aprender, como "Desarrollo web con Wordpress" en lugar de simplemente "aprender web".</li>
+          <li><b>Enfócate en un curso a la vez:</b> nuestro objetivo es ayudarte a completar un curso en lugar de empezar varios y no terminar ninguno.</li>
+          <li><b>Los cursos se basan en vídeos</b>, pero planeamos agregar más funciones y tipos de contenido en el futuro.</li>
+        </ul>
+
+        <h5>Nota importante:</h5>
+        <p>Ote está en constante desarrollo y es posible que encuentres errores o demoras al generar un curso. ¡Ten paciencia! Estamos trabajando para mejorar la plataforma en los próximos meses.</p>
+
+      </div>
+    </div>
+    <div class="card-action">
+      <div class="course-query-container">
+        <label for="course-query">Quiero aprender</label>
+        <input id="course-query" type="text" placeholder="Inglés nivel básico">
+        <button class="btn-small waves-effect waves-light btn-send"><i class="material-icons">send</i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function scrollToContent() {
+    const container = document.querySelector('.container');
+    container.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+</script>
+</body>
+</html>

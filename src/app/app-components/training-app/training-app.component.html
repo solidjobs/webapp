@@ -1,1 +1,41 @@
-<p>training-app works!</p>
+<!-- Menu lateral -->
+<div class="left-align white">
+  <ul id="slide-out" class="sidenav">
+    <li><a class="waves-effect" href="/cv"><i aria-label="Crear CV" class="material-icons">create</i>Crea tu currículum</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="https://solidjobs.org/colabora/" target="_blank"><i class="material-icons">account_balance_wallet</i>Colabora, te necesitamos.</a></li>
+
+    <li>
+      <div class="divider"></div>
+    </li>
+
+    <li><a class="waves-effect" href="https://solidjobs.org/politica-de-privacidad/" target="_blank"><i class="material-icons">subject</i>Política de privacidad</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/avisos-legales/" target="_blank"><i class="material-icons">description</i>Avisos legales</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/politica-de-cookies/" target="_blank"><i class="material-icons">description</i>Política de cookies</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/" target="_blank"><i class="material-icons">home</i>Ir a solidjobs.org</a></li>
+    <li><a class="waves-effect" href="https://solidjobs.org/contacto/" target="_blank"><i class="material-icons">mail</i>Contacto</a></li>
+  </ul>
+
+  <nav>
+    <div class="nav-wrapper white">
+      <a href="#" data-target="slide-out" style="display: block !important;" class="sidenav-trigger left">
+        <i class="material-icons pink-text">menu</i>
+      </a>
+      <ul class="brand-logo center">
+        <li>
+          <img alt="Logo SolidJobs" src="/assets/img/cv-app/img-header-logo.png" style="max-width: 70px;" />
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="text-align: center;margin: 5px 0;">
+    <img alt="Solidjobs, crea tu currículum fácil" src="/assets/img/studies-app/right-arrow2.png" style="width: 70%;max-width: 538px;" />
+  </div>
+</div>
+
+<app-training-header></app-training-header>
+
+<router-outlet></router-outlet>
