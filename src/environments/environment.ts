@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   'environment': 'dev',
-  panelApiUrl: 'https://backend.solidjobs.org/'
+  panelApiUrl: 'https://backend.solidjobs.org/',
+  trainingApiUrl: 'https://studies.solidjobs.org/'
 };

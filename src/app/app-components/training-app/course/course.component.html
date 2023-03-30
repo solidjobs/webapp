@@ -23,7 +23,7 @@
   <div class="lecture-action" *ngIf="!isCourseCompleted()">
     <label>
       <input type="checkbox" [(ngModel)]="lectures[currentLectureIndex].status" (change)="markAsDone(lectures[currentLectureIndex])" [disabled]="lectures[currentLectureIndex]?.status === 1" />
-      <span>Visto</span>
+      <span>Ya lo he visto.</span>
     </label>
   </div>
   <div *ngIf="isCourseCompleted()">

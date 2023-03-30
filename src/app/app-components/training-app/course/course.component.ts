@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-course',
@@ -31,7 +32,7 @@ export class CourseComponent implements OnInit {
   getCourse() {
     const token = localStorage.getItem('session');
     const headers = {token: token};
-    this.http.get('https://studies.solidjobs.org/course', {headers}).subscribe((courses: any[]) => {
+    this.http.get(environment.trainingApiUrl + 'course', {headers}).subscribe((courses: any[]) => {
       this.course = courses.find(course => course.uuid === this.courseUuid);
     });
   }
@@ -39,7 +40,7 @@ export class CourseComponent implements OnInit {
   getLectures() {
     const token = localStorage.getItem('session');
     const headers = {token: token};
-    this.http.get(`https://studies.solidjobs.org/course/${this.courseUuid}`, {headers}).subscribe((lectures: any[]) => {
+    this.http.get(environment.trainingApiUrl + `course/${this.courseUuid}`, {headers}).subscribe((lectures: any[]) => {
       this.lectures = lectures;
       this.loading = false;
     });
@@ -50,10 +51,12 @@ export class CourseComponent implements OnInit {
     const headers = {token: token};
     const body = {status: 1};
     this.http
-      .put(`https://studies.solidjobs.org/course/${this.courseUuid}/lecture/${lecture.uuid}`, body, {headers})
+      .put(environment.trainingApiUrl + `course/${this.courseUuid}/lecture/${lecture.uuid}`, body, {headers})
       .subscribe(() => {
         lecture.status = 1;
         this.goToNextLecture();
+      }, () => {
+        alert('Primero has de ver los vídeos. No es técnicamente posible que ya los hayas visto.');
       });
   }
 

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs';
 import {map, takeWhile} from 'rxjs/operators';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-create-course',
@@ -38,7 +39,7 @@ export class CreateCourseComponent implements OnInit {
   getCourse() {
     const token = localStorage.getItem('session');
     const headers = {token: token};
-    this.http.get('https://studies.solidjobs.org/course', {headers}).subscribe((courses: any[]) => {
+    this.http.get(environment.trainingApiUrl + 'course', {headers}).subscribe((courses: any[]) => {
       this.course = courses.find(course => course.status === 0);
       this.loading = false;
       this.evalAction();
@@ -60,7 +61,7 @@ export class CreateCourseComponent implements OnInit {
     const token = localStorage.getItem('session');
     const headers = {token: token};
     this.lastSend = Math.floor(Date.now()/1000);
-    this.http.post('https://studies.solidjobs.org/course', {prompt: this.courseQuery}, {headers}).subscribe((course: any) => {
+    this.http.post(environment.trainingApiUrl + 'course', {prompt: this.courseQuery}, {headers}).subscribe((course: any) => {
       this.router.navigate(['/studies/course', course.uuid]);
     }, (error) => {
       this.loading = false;
@@ -73,6 +74,9 @@ export class CreateCourseComponent implements OnInit {
       this.errorMessage = 'Has superado el límite de solicitudes. Por favor, inténtalo de nuevo más tarde.';
     } else {
       switch (error.error.type) {
+        case 'EXISTING_COURSE':
+          document.location.href = '/studies'
+          break;
         case 'COURSE_RATIO':
           this.errorMessage = 'Ha ocurrido un error al generar el curso. Por favor, inténtalo de nuevo.';
           break;
