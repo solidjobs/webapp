@@ -77,7 +77,7 @@
     </div>
     <div class="card-content">
       <div class="list-container">
-        <div *ngIf="errorMessage">
+        <div *ngIf="!errorMessage">
           <h5>¿Cómo funciona?</h5>
           <ul>
             <li><b>Escribe lo que quieres estudiar</b> y Ote generará un curso personalizado para ti usando su <i>IA (Inteligencia Artificial)</i>.</li>
@@ -93,9 +93,10 @@
 
           <h5>Nota importante:</h5>
           <p>Ote está en constante desarrollo y es posible que encuentres errores o demoras al generar un curso cuando haya mucha demanda. ¡Ten paciencia! Estamos trabajando para mejorar la plataforma en los próximos meses.</p>
+          <p>Si quieres colaborar en que estos tiempos sean más cortos: <a href="https://solidjobs.org/colabora">Colabora</a>.</p>
 
         </div>
-        <div *ngIf="!errorMessage" class="error-message-container">
+        <div *ngIf="errorMessage" class="error-message-container">
           <h5 style="color: red">¡Parece que hay mucha gente haciendo cursos!</h5>
           <p><b>Ote tiene su módulo de inteligencia artificial al límite.</b></p>
           <p style="margin: 10px auto; background-color: lightyellow;">Por favor, ten en cuenta que esto es una <i>Prueba De Concepto</i> y el rendimiento será mejorado en el fututo. Si quieres hacer que este futuro esté más próximo: <a target="_blank" href="https://solidjobs.org/colabora">Colabora</a>.</p>
