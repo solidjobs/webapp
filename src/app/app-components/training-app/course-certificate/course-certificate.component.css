@@ -1,0 +1,10 @@
+.btn {
+  margin-right: 10px;
+}
+
+.course-certificate {
+  clear: both;
+  border-bottom: 1px solid black;
+  min-height: 60px;
+  padding: 20px;
+}

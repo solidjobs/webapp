@@ -1,1 +1,21 @@
-<p>course-certificate works!</p>
+<div class="container">
+  <h4>Certificados</h4>
+  <div *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
+
+  <div *ngIf="!loading">
+    <div class="course-list" *ngIf="courses.length > 0">
+      <div class="course-certificate" *ngFor="let course of this.courses">
+        <span>{{ course.title }} ({{ Math.ceil(course.duration / 3600) }} horas)</span>
+        <a target="_blank" href="https://studies.solidjobs.org/course/{{ course.uuid }}/certificate">
+          <span class="right btn">Obtener certificado</span>
+        </a>
+        <span routerLink="/studies/course/{{ course.uuid }}" class="right btn">Ver curso</span>
+      </div>
+    </div>
+    <div *ngIf="courses.length === 0">
+      <span>Todavía no tienes certificados, accede a <a href="/studies">ESTUDIAR</a> para empezar a estudiar.</span>
+    </div>
+  </div>
+</div>
