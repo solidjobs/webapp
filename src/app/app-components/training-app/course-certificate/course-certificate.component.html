@@ -7,11 +7,17 @@
   <div *ngIf="!loading">
     <div class="course-list" *ngIf="courses.length > 0">
       <div class="course-certificate" *ngFor="let course of this.courses">
-        <span>{{ course.title }} ({{ Math.ceil(course.duration / 3600) }} horas)</span>
-        <a target="_blank" href="https://studies.solidjobs.org/course/{{ course.uuid }}/certificate">
-          <span class="right btn">Obtener certificado</span>
-        </a>
-        <span routerLink="/studies/course/{{ course.uuid }}" class="right btn">Ver curso</span>
+        <div>
+          <a routerLink="/studies/course/{{ course.uuid }}" href="/studies/course/{{ course.uuid }}">
+            <span>{{ course.title }}</span>
+          </a>
+          <small> ({{ Math.ceil(course.duration / 3600) }} horas)</small>
+        </div>
+        <div style="text-align: right">
+          <a target="_blank" href="https://studies.solidjobs.org/course/{{ course.uuid }}/certificate">
+            <span class="btn">Obtener certificado</span>
+          </a>
+        </div>
       </div>
     </div>
     <div *ngIf="courses.length === 0">
